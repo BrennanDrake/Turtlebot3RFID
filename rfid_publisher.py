@@ -1,16 +1,15 @@
- #! /usr/bin/python3
+#! /usr/bin/python3
 
 import rospy
 from std_msgs.msg import String
 import serial
  
 def talker():
-    pub = rospy.Publisher('rfid', String, queue_size=1)
+    pub = rospy.Publisher('rfid', String, queue_size=4)
     rospy.init_node('rfid_node', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
     ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
-    ser.reset_input_buffer()
 
     while not rospy.is_shutdown():
         if ser.in_waiting > 0:
