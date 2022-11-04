@@ -5,7 +5,7 @@ from std_msgs.msg import String
 import serial
  
 def talker():
-    pub = rospy.Publisher('rfid', String, queue_size=10)
+    pub = rospy.Publisher('rfid', String, queue_size=1)
     rospy.init_node('rfid_node', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
