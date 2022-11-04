@@ -13,7 +13,8 @@ def talker():
 
     while not rospy.is_shutdown():
         if ser.in_waiting > 0:
-            id = ser.readline().decode('utf-8').rstrip()
+            id = ser.readline()
+            #.decode('utf-8').rstrip()
             cmd = String()
             cmd.data = id
             pub.publish(cmd)
