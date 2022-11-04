@@ -18,7 +18,7 @@ def talker():
         #     cmd.data = id
         #     pub.publish(cmd)
         #     rate.sleep()
-        rospy.loginfo(ser)
+        rospy.loginfo(id = ser.readline().decode('utf-8').rstrip())
         rate.sleep()
    
 if __name__ == '__main__':
