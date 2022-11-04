@@ -23,22 +23,23 @@ class Rfid_Test():
         self.tag_id = data.data
 
     def control(self):
-        if self.tag_id == "00:0:0000000000":
-            self.cmd.linear.x = 0
-            self.cmd.angular.z = 0
-            self.pub.publish(self.cmd)
-        elif self.tag_id == "E0:4:10888CE126":
-            self.cmd.linear.x = 0.5
-            self.cmd.angular.z = 0
-            self.pub.publish(self.cmd)
-            time.sleep(1)
-        elif self.tag_id == "E0:4:10888CA1D7":
-            self.cmd.linear.x = 0
-            self.cmd.angular.z = 0.5
-            self.pub.publish(self.cmd)
-            time.sleep(1)
-        else:
-            rospy.loginfo("Initializing")
+        while not rospy.is_shutdown():
+            if self.tag_id == "00:0:0000000000":
+                self.cmd.linear.x = 0
+                self.cmd.angular.z = 0
+                self.pub.publish(self.cmd)
+            elif self.tag_id == "E0:4:10888CE126":
+                self.cmd.linear.x = 0.5
+                self.cmd.angular.z = 0
+                self.pub.publish(self.cmd)
+                time.sleep(1)
+            elif self.tag_id == "E0:4:10888CA1D7":
+                self.cmd.linear.x = 0
+                self.cmd.angular.z = 0.5
+                self.pub.publish(self.cmd)
+                time.sleep(1)
+            else:
+                rospy.loginfo("Initializing")
 
 
 if __name__ == "__main__":
