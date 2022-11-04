@@ -1,4 +1,4 @@
- #! /usr/bin/env python
+ #!/usr/bin/env python
 
 import rospy
 from std_msgs.msg import String
@@ -6,7 +6,7 @@ import serial
  
 def talker():
     pub = rospy.Publisher('rfid', String, queue_size=10)
-    rospy.init_node('rfid', anonymous=True)
+    rospy.init_node('rfid_node', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
     ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
