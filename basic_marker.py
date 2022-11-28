@@ -4,16 +4,18 @@
 
 import rospy
 from visualization_msgs.msg import Marker
+from visualization_msgs.msg import MarkerArray
 from geometry_msgs.msg import Point
 
 
 class MarkerBasics(object):
 
     def __init__(self):
-        self.marker_objectlisher = rospy.Publisher('/marker_basic', Marker, queue_size=1)
+        self.marker_arraypub = rospy.Publisher('/marker_array', MarkerArray, queue_size=1)
         self.rate = rospy.Rate(1)
         self.init_marker(index=0,z_val=0)
-    
+        self.marker_array = MarkerArray()    
+
     def init_marker(self,index=0, z_val=0):
         self.marker_object = Marker()
         self.marker_object.header.frame_id = "base_footprint"
@@ -49,7 +51,8 @@ class MarkerBasics(object):
     
     def start(self):
         while not rospy.is_shutdown():
-            self.marker_objectlisher.publish(self.marker_object)
+            self.marker_array.markers.append(self.marker_object)
+            self.marker_arraypub.publish(self.marker_array)
             self.rate.sleep()
    
 
