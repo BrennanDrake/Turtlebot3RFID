@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #Origin: The Construct Advanced Rviz Markers Class
 
@@ -16,24 +16,27 @@ class MarkerBasics(object):
     
     def init_marker(self,index=0, z_val=0):
         self.marker_object = Marker()
-        self.marker_object.header.frame_id = "/world"
+        self.marker_object.header.frame_id = "base_footprint"
         self.marker_object.header.stamp    = rospy.get_rostime()
         self.marker_object.ns = "haro"
         self.marker_object.id = index
-        self.marker_object.type = Marker.SPHERE
+        self.marker_object.type = Marker.CUBE
         self.marker_object.action = Marker.ADD
         
         my_point = Point()
-        my_point.z = z_val
+        my_point.z = .12
+        my_point.x = -.15
+        my_point.y = .12
         self.marker_object.pose.position = my_point
         
-        self.marker_object.pose.orientation.x = 4.0
-        self.marker_object.pose.orientation.y = 11.0
-        self.marker_object.pose.orientation.z = 5.0
+
+        self.marker_object.pose.orientation.x = 0
+        self.marker_object.pose.orientation.y = 0
+        self.marker_object.pose.orientation.z = 0
         self.marker_object.pose.orientation.w = 1.0
-        self.marker_object.scale.x = 1.0
-        self.marker_object.scale.y = 1.0
-        self.marker_object.scale.z = 1.0
+        self.marker_object.scale.x = .1
+        self.marker_object.scale.y = .025
+        self.marker_object.scale.z = .1
     
         self.marker_object.color.r = 0.0
         self.marker_object.color.g = 0.0
