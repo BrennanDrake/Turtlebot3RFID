@@ -3,7 +3,8 @@
 import rospy
 from std_msgs.msg import String
 import serial
- 
+import time
+
 def talker():
     pub = rospy.Publisher('rfid', String, queue_size=4)
     rospy.init_node('rfid_node', anonymous=True)
@@ -20,6 +21,7 @@ def talker():
             rate.sleep()
    
 if __name__ == '__main__':
+    time.sleep(2)
     try:
        talker()
     except rospy.ROSInterruptException:
